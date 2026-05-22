@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La mia Music Library</title>
+  <link rel="stylesheet" href="assets/CSS/style.css"/>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-left">
+        <h1>La mia Libreria Musicale</h1>
+        <p>Aggiungi gli album che hai ascoltato o che vuoi ascoltare.</p>
+      </div>
+      <button id="btn-tema">Tema scuro</button>
+    </div>
+  </header>
+  <main>
+    <section class="form">
+      <h2>Aggiungi un album</h2>
+      <form id="form-album">
+        <input type="text" id="titolo" placeholder="Titolo" required>
+        <input type="text" id="artista" placeholder="Artista" required>
+        <input type="number" id="anno" placeholder="Anno" >
+        <select id="stato">
+          <option value="da-ascoltare">Da ascoltare</option>
+          <option value="ascoltato">Ascoltato</option>
+        </select>
+        <button type="submit">Aggiungi</button>
+      </form>
+    </section>
+    <section class="controlli">
+      <input type="text" id="ricerca" placeholder="Cerca per titolo o artista">
+      <select id="filtro">
+        <option value="tutti">Tutti</option>
+        <option value="ascoltato">Ascoltati</option>
+        <option value="da-ascoltare">Da ascoltare</option>
+      </select>
+      <select id="ordinamento">
+        <option value="anno-asc">Anno crescente</option>
+        <option value="anno-desc">Anno decrescente</option>
+        <option value="titolo-asc">Titolo A-Z</option>
+        <option value="titolo-desc">Titolo Z-A</option>
+      </select>
+    </section>
+    <section class="statistiche">
+      <div class="stats-numeri">
+        <div class="stat">
+          <span class="stat-numero" id="stat-totale">0</span>
+          <span class="stat-label">Totale</span>
+        </div>
+        <div class="stat">
+          <span class="stat-numero" id="stat-ascoltati">0</span>
+          <span class="stat-label">Ascoltati</span>
+        </div>
+        <div class="stat">
+          <span class="stat-numero" id="stat-da-ascoltare">0</span>
+          <span class="stat-label">Da ascoltare</span>
+        </div>
+      </div>
+      <div class="stats-barra">
+        <div class="barra-progresso" id="barra-ascoltati"></div>
+      </div>
+      <span class="stats-label">Percentuale ascoltati</span>
+    </section>
+    <section class="lista" id="lista-album">
+      <!-- Container che render() ricostruisce a ogni cambio di stato -->
+    </section>
+    <div id="notifica"></div>
+  </main>
+  <footer>
+    <p>Music Library — Soluzione di riferimento — Epicode Full Stack AI 2026</p>
+  </footer>
+  <script src="assets/JS/script.js"></script>
+</body>
+</html>
