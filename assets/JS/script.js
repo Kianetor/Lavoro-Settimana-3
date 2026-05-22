@@ -11,7 +11,6 @@ REGOLE
 - Niente AI per generare codice. Niente template scaricati.
 */
 
-
 /* STATO
    In cima al file definisci poche variabili globali:
    - un array di oggetti come dato principale (es. libri, ricette, film, ...)
@@ -20,8 +19,19 @@ REGOLE
    - una variabile per la stringa di ricerca corrente
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+/* Array Oggetti Iniziale */
 
+let albums = [
+   { id: 1, titolo: "The Wall", artista: "Pink Floyd", anno: 1979, stato: "da-ascoltare" },
+   { id: 2, titolo: "Parachutes", artista: "Coldplay", anno: 2000, stato: "ascoltato" },
+   { id: 3, titolo: "Meteora", artista: "Linkin Park", anno: 2003, stato: "ascoltato" },
+   { id: 4, titolo: "Ride the Lightning", artista: "Metallica", anno: 1984, stato: "da-ascoltare" },
+   { id: 5, titolo: "Non al denaro non all'amore né al cielo", artista: "Fabrizio De André", anno: 1971, stato: "ascoltato" }
+];
+
+let filtroCorrente = "tutti";
+let ordinamentoCorrente = "anno-asc";
+let ricercaCorrente = "";
 
 /* RENDER()
    Una sola funzione che ridipinge la lista. A ogni chiamata:
@@ -35,7 +45,53 @@ REGOLE
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+function render() {
+   const listaAlbum = document.getElementById("lista-album");
+   listaAlbum.innerHTML = "";
 
+   // 1) & 2) Filtro basato su stato e su stringa di ricerca live
+   let albumElaborati = albums.filter(album => {
+      const corrispondeFiltro = filtroCorrente === "tutti" || album.stato === filtroCorrente;
+      const corrispondeRicerca = album.titolo.toLowerCase().includes(ricercaCorrente.toLowerCase()) || album.artista.toLowerCase().includes(ricercaCorrente.toLowerCase());
+      return corrispondeFiltro && corrispondeRicerca;
+   });
+
+   // 3) Ordinamento
+   albumElaborati.sort((a, b) => {
+      if (ordinamentoCorrente === "anno-asc") return a.anno - b.anno;
+      if (ordinamentoCorrente === "anno-desc") return b.anno - a.anno;
+      if (ordinamentoCorrente === "titolo-asc") return a.titolo.localeCompare(b.titolo);
+      if (ordinamentoCorrente === "titolo-desc") return b.titolo.localeCompare(a.titolo);
+      return 0;
+   });
+
+   // 4) & 5) Generazione elementi DOM nel container
+   albumElaborati.forEach(album => {
+      const card = document.createElement("div");
+      card.className = `album-card ${album.stato}`;
+      card.dataset.id = album.id;
+
+      const badgeTesto = album.stato === "ascoltato" ? "ascoltato" : "Da ascoltare";
+      const badgeClasse = album.stato === "ascoltato" ? "badge-ascoltato" : "badge-da-ascoltare";
+      const toggleTesto = album.stato === "ascoltato" ? "Segna da ascoltare" : "Segna ascoltato";
+
+      card.innerHTML = `
+      <div class="album-info">
+        <h3 class="testo-titolo">${album.titolo}</h3>
+        <p class="testo-artista">${album.artista} — ${album.anno || 'N/D'}</p>
+      </div>
+      <div class="album-azioni">
+        <span class="badge ${badgeClasse}">${badgeTesto}</span>
+        <button class="btn-toggle">${toggleTesto}</button>
+        <button class="btn-modifica">Modifica</button>
+        <button class="btn-elimina">Elimina</button>
+      </div>
+    `;
+      listaAlbum.appendChild(card);
+   });
+
+
+}
 
 /* FORM CON VALIDAZIONE
    addEventListener("submit") sul form.
@@ -125,15 +181,6 @@ REGOLE
 /* MULTI-VISTA — lista / card / tabella
    Una variabile globale "vista" che render() legge per decidere quale HTML
    produrre. Tre button cambiano "vista" e chiamano render().
-*/
-
-/* SCRIVI QUI LA TUA RISPOSTA */
-
-
-/* CATEGORIE
-   Aggiungi un campo categoria nello schema. Nel form un <select> per sceglierla.
-   In render(), raggruppa con reduce in { categoria: [elementi] } e disegna un
-   header per categoria con sotto la lista di quella categoria.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */

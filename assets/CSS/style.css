@@ -38,7 +38,7 @@ button {
 /* Scrivi qui sotto i tuoi stili */
 
 header {
-  background: #1a1a1a;
+  background: #1db954;
   color: #fff;
   padding: 1.5rem 2rem;
 }
@@ -63,7 +63,7 @@ header {
 }
 
 #btn-tema {
-  background: transparent;
+  background: black;
   color: #fff;
   border: 1px solid #fff;
   padding: 0.5rem 1rem;
@@ -147,4 +147,156 @@ section {
   font-weight: 600;
   font-size: 0.95rem;
   transition: background-color 0.2s;
+}
+
+/* controlli e ricerca */
+
+.controlli {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.controlli input,
+.controlli select {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.controlli input:focus,
+.controlli select:focus {
+  outline: none;
+  border-color: #1db954;
+}
+
+#ricerca {
+  flex: 1;
+  min-width: 200px;
+}
+
+#filtro,
+#ordinamento {
+  min-width: 150px;
+}
+
+/* statistiche */
+
+.statistiche {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stats-numeri {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-numero {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#stat-totale {
+  color: #1db954;
+}
+
+#stat-ascoltati {
+  color: #1db954;
+}
+
+#stat-da-ascoltare {
+  color: #666;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.stats-barra {
+  flex: 1;
+  height: 12px;
+  background: #e8e8e0;
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 150px;
+}
+
+.barra-progresso {
+  height: 100%;
+  background: #1db954;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.stats-label {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Lista Dinamica Album */
+
+.lista {
+  background: transparent;
+  padding: 0;
+}
+
+.album-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid #b3b3b3;
+}
+
+/* Bordo verde per gli album ascoltati */
+
+.album-card.ascoltato {
+  border-left-color: #1db954;
+}
+
+.album-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.album-info p {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.album-azioni {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+
+
+
+/* Footer */
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+  font-size: 0.85rem;
 }
