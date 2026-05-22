@@ -289,8 +289,34 @@ section {
   align-items: center;
 }
 
+.album-azioni button {
+  background: #efeee7;
+  color: #111;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
 
+.album-azioni button:hover {
+  background: #e2e1d7;
+}
 
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+}
+
+.badge-da-ascoltare, 
+.badge.da-ascoltare {
+  background: #f0efe6;
+  color: #555;
+}
 
 /* Footer */
 
@@ -300,3 +326,11 @@ footer {
   color: #888;
   font-size: 0.85rem;
 }
+
+/* Variante Badge: Letto / Ascoltato (Verde chiaro con testo scuro) */
+.badge-ascoltato, 
+.badge.ascoltato {
+  background: #d1f2d9;
+  color: #2b7a43;
+}
+

@@ -33,6 +33,30 @@ let filtroCorrente = "tutti";
 let ordinamentoCorrente = "anno-asc";
 let ricercaCorrente = "";
 
+
+/* Selezione Elementi dal DOM */
+
+const formAlbum = document.getElementById("form-album");
+const inputTitolo = document.getElementById("titolo");
+const inputArtista = document.getElementById("artista");
+const inputAnno = document.getElementById("anno");
+const selectStato = document.getElementById("stato");
+
+const inputRicerca = document.getElementById("ricerca");
+const selectFiltro = document.getElementById("filtro");
+const selectOrdinamento = document.getElementById("ordinamento");
+
+const listaAlbum = document.getElementById("lista-album");
+const btnTema = document.getElementById("btn-tema");
+const divNotifica = document.getElementById("notifica");
+
+// Elementi statistiche
+const statTotale = document.getElementById("stat-totale");
+const statAscoltati = document.getElementById("stat-ascoltati");
+const statDaAscoltare = document.getElementById("stat-da-ascoltare");
+const barraProgresso = document.getElementById("barra-ascoltati");
+
+
 /* RENDER()
    Una sola funzione che ridipinge la lista. A ogni chiamata:
    1) parte dall'array completo,
@@ -44,19 +68,20 @@ let ricercaCorrente = "";
    Salva lo stato in localStorage in fondo a render() (cerca tu come funziona).
 */
 
-/* SCRIVI QUI LA TUA RISPOSTA */
+
 function render() {
    const listaAlbum = document.getElementById("lista-album");
    listaAlbum.innerHTML = "";
 
-   // 1) & 2) Filtro basato su stato e su stringa di ricerca live
+   /* 1-2 Filtro basato su stato e su stringa di ricerca live */
+
    let albumElaborati = albums.filter(album => {
       const corrispondeFiltro = filtroCorrente === "tutti" || album.stato === filtroCorrente;
       const corrispondeRicerca = album.titolo.toLowerCase().includes(ricercaCorrente.toLowerCase()) || album.artista.toLowerCase().includes(ricercaCorrente.toLowerCase());
       return corrispondeFiltro && corrispondeRicerca;
    });
 
-   // 3) Ordinamento
+   /* 3) Ordinamento */
    albumElaborati.sort((a, b) => {
       if (ordinamentoCorrente === "anno-asc") return a.anno - b.anno;
       if (ordinamentoCorrente === "anno-desc") return b.anno - a.anno;
@@ -65,7 +90,7 @@ function render() {
       return 0;
    });
 
-   // 4) & 5) Generazione elementi DOM nel container
+   /* 4-5 Generazione elementi DOM nel container */
    albumElaborati.forEach(album => {
       const card = document.createElement("div");
       card.className = `album-card ${album.stato}`;
@@ -90,6 +115,16 @@ function render() {
       listaAlbum.appendChild(card);
    });
 
+const totale = albums.length;
+   const ascoltati = albums.filter(album => album.stato === "ascoltato").length;
+   const daAscoltare = totale - ascoltati;
+
+   const percentuale = totale > 0 ? (ascoltati / totale) * 100 : 0;
+   barraProgresso.style.width = percentuale + "%";
+
+   statTotale.textContent = totale;
+   statAscoltati.textContent = ascoltati;
+   statDaAscoltare.textContent = daAscoltare;
 
 }
 
@@ -104,6 +139,34 @@ function render() {
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+formAlbum.addEventListener("submit", function (event) {
+   event.preventDefault();
+
+   const titoloValore = inputTitolo.value.trim();
+   const artistaValore = inputArtista.value.trim();
+   const annoValore = inputAnno.value ? parseInt(inputAnno.value) : null;
+   const statoValore = selectStato.value;
+
+   
+   if (!titoloValore || !artistaValore) {
+      notifica("Errore: Compila tutti i campi obbligatori!");
+      return;
+   }
+
+   const nuovoAlbum = {
+      id: Date.now(), // Genera ID numerico unico basato sul millisecondo corrente
+      titolo: titoloValore,
+      artista: artistaValore,
+      anno: annoValore,
+      stato: statoValore
+   };
+
+   albums.push(nuovoAlbum);
+   formAlbum.reset();
+   render();
+});
+
+render();
 
 /* INTERAZIONI BASE — eliminare, modificare, contare
    - Elimina: filter per id, render(). Event delegation sul container.
@@ -114,6 +177,20 @@ function render() {
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+document.getElementById("ricerca").addEventListener("input", function (event) {
+   ricercaCorrente = event.target.value;
+   render();
+});
+
+document.getElementById("filtro").addEventListener("change", function (event) {
+   filtroCorrente = event.target.value;
+   render();
+});
+
+document.getElementById("ordinamento").addEventListener("change", function (event) {
+   ordinamentoCorrente = event.target.value;
+   render();
+});
 
 /* RICERCA, FILTRO, ORDINAMENTO
    - Ricerca live: <input> con event "input". Salva in stato e render().
