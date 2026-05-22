@@ -312,8 +312,9 @@ section {
   text-align: center;
 }
 
-.badge-da-ascoltare, 
+.badge-da-ascoltare,
 .badge.da-ascoltare {
+  font-size: 0.9em;
   background: #f0efe6;
   color: #555;
 }
@@ -328,9 +329,74 @@ footer {
 }
 
 /* Variante Badge: Letto / Ascoltato (Verde chiaro con testo scuro) */
-.badge-ascoltato, 
+.badge-ascoltato,
 .badge.ascoltato {
+  font-size: 0.9rem;
   background: #d1f2d9;
   color: #2b7a43;
+
 }
 
+body.dark {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+/* Sfondi delle sezioni e dei form in modalità scura */
+body.dark section {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
+/* Testi secondari e label */
+body.dark .header-left p,
+body.dark .stat-label,
+body.dark .stats-label,
+body.dark .album-info p {
+  color: #b3b3b3;
+}
+
+/* Card degli album */
+body.dark .album-card {
+  background: #282828;
+  color: #fff;
+}
+
+/* Tema Scuro */
+body.dark input,
+body.dark select {
+  background: #282828;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark input:focus,
+body.dark select:focus {
+  border-color: #1db954;
+}
+
+
+body.dark .album-azioni button {
+  background: grey;
+  color: #fff;
+}
+
+body.dark .album-azioni button:hover {
+  background: #444443;
+}
+
+
+body.dark .stats-barra {
+  background: #333;
+}
+
+
+body.dark #btn-tema {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+body.dark #btn-tema:hover {
+  background: rgba(255, 255, 255, 0.9);
+}

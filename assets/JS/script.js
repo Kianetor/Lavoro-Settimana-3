@@ -36,6 +36,7 @@ let ricercaCorrente = "";
 
 /* Selezione Elementi dal DOM */
 
+
 const formAlbum = document.getElementById("form-album");
 const inputTitolo = document.getElementById("titolo");
 const inputArtista = document.getElementById("artista");
@@ -50,7 +51,6 @@ const listaAlbum = document.getElementById("lista-album");
 const btnTema = document.getElementById("btn-tema");
 const divNotifica = document.getElementById("notifica");
 
-// Elementi statistiche
 const statTotale = document.getElementById("stat-totale");
 const statAscoltati = document.getElementById("stat-ascoltati");
 const statDaAscoltare = document.getElementById("stat-da-ascoltare");
@@ -100,8 +100,7 @@ function render() {
       const badgeClasse = album.stato === "ascoltato" ? "badge-ascoltato" : "badge-da-ascoltare";
       const toggleTesto = album.stato === "ascoltato" ? "Segna da ascoltare" : "Segna ascoltato";
 
-      card.innerHTML = `
-      <div class="album-info">
+      card.innerHTML = `<div class="album-info">
         <h3 class="testo-titolo">${album.titolo}</h3>
         <p class="testo-artista">${album.artista} — ${album.anno || 'N/D'}</p>
       </div>
@@ -110,12 +109,12 @@ function render() {
         <button class="btn-toggle">${toggleTesto}</button>
         <button class="btn-modifica">Modifica</button>
         <button class="btn-elimina">Elimina</button>
-      </div>
-    `;
+      </div>`;
+
       listaAlbum.appendChild(card);
    });
 
-const totale = albums.length;
+   const totale = albums.length;
    const ascoltati = albums.filter(album => album.stato === "ascoltato").length;
    const daAscoltare = totale - ascoltati;
 
@@ -147,7 +146,7 @@ formAlbum.addEventListener("submit", function (event) {
    const annoValore = inputAnno.value ? parseInt(inputAnno.value) : null;
    const statoValore = selectStato.value;
 
-   
+
    if (!titoloValore || !artistaValore) {
       notifica("Errore: Compila tutti i campi obbligatori!");
       return;
@@ -192,6 +191,8 @@ document.getElementById("ordinamento").addEventListener("change", function (even
    render();
 });
 
+
+
 /* RICERCA, FILTRO, ORDINAMENTO
    - Ricerca live: <input> con event "input". Salva in stato e render().
    - Filtro: <select> con event "change". Salva in stato e render().
@@ -210,6 +211,7 @@ document.getElementById("ordinamento").addEventListener("change", function (even
 /* SCRIVI QUI LA TUA RISPOSTA */
 
 
+
 /* TEMA CHIARO/SCURO
    Un button che chiama document.body.classList.toggle("dark").
    In CSS scrivi le regole opposte (es. body.dark { background: #111; ... }).
@@ -217,6 +219,15 @@ document.getElementById("ordinamento").addEventListener("change", function (even
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+btnTema.addEventListener("click", function () {
+   document.body.classList.toggle("dark");
+
+   if (document.body.classList.contains("dark")) {
+      btnTema.textContent = "Tema chiaro";
+   } else {
+      btnTema.textContent = "Tema scuro";
+   }
+});
 
 /* PERSISTENZA — localStorage (cerca tu su MDN)
    - In fondo a render(), salva lo stato:
