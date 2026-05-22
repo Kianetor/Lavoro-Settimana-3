@@ -82,6 +82,7 @@ main {
   margin: 0 auto;
   padding: 1.5rem 2rem;
 }
+
 section {
   background: #fff;
   border-radius: 12px;
@@ -96,12 +97,14 @@ section {
   font-weight: 600;
   margin-bottom: 1rem;
 }
+
 #form-album {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
 }
+
 #form-album input,
 #form-album select {
   padding: 0.6rem 0.9rem;
@@ -110,16 +113,32 @@ section {
   font-size: 0.95rem;
   background: #fff;
 }
+
 #form-album input:focus,
 #form-album select:focus {
   outline: none;
   border-color: #1db954;
 }
-#titolo { flex: 1; min-width: 150px; }
-#artista { flex: 1; min-width: 150px; }
-#anno { width: 100px; }
-#stato { width: 150px; }
-/* Pulsante Aggiungi - verde Spotify style */
+
+#titolo {
+  flex: 1;
+  min-width: 150px;
+}
+
+#artista {
+  flex: 1;
+  min-width: 150px;
+}
+
+#anno {
+  width: 100px;
+}
+
+#stato {
+  width: 150px;
+}
+
+
 #form-album button[type="submit"] {
   background: #1db954;
   color: #fff;
